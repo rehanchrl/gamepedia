@@ -9,69 +9,75 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Item>
-
+    
+    @State var searchText: String = ""
+    @State var games:[GamesList] = []
+    
+    
+    var maxRating = 5
+    var offImage: Image?
+    var onImage = Image(systemName: "star.fill")
+    
+    var offColor = Color.gray
+    var onColor = Color.yellow
+    
     var body: some View {
-        List {
-            ForEach(items) { item in
-                Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+        NavigationView {
+            List {
+                TextField("Search", text: $searchText, onCommit: {
+                    ApiService.getListGame(keyword: searchText) { games in
+                        self.games = games
+                    }
+                })
+                .padding(7)
+                .background(Color(.systemGray6))
+                .cornerRadius(8)
+                
+                ForEach(games) { game in
+                    NavigationLink(destination: DetailView(game: game)) {
+                        HStack {
+                            CustomImageView(url: game.backgroundImage ?? "")
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 100)
+                                .cornerRadius(10)
+                            VStack(alignment: .leading) {
+                                Text(game.name ?? "")
+                                    .font(.title2)
+                                Text(game.released ?? "")
+                                    .font(.callout)
+                                RatingView(rating: Int(game.rating ?? 0))
+                            }
+                        }
+                    }
+                    
+                }
             }
-            .onDelete(perform: deleteItems)
-        }
-        .toolbar {
-            #if os(iOS)
-            EditButton()
-            #endif
+            .navigationTitle("Gamepedia")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink(destination: AboutView()) {
+                        Text("About")
+                    }
 
-            Button(action: addItem) {
-                Label("Add Item", systemImage: "plus")
+                }
             }
         }
+        .onAppear() {
+            ApiService.getListGame(keyword: "") { games in
+                self.games = games
+            }
+        }
+        
     }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
+    
+    func image(for number: Int, rating: Int) -> Image {
+        if number > rating {
+            return offImage ?? onImage
+        } else {
+            return onImage
         }
     }
 }
-
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
