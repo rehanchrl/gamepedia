@@ -18,7 +18,7 @@ struct CustomImageView: View {
         
         init(url: String) {
             guard let parsedURL = URL(string: url) else {
-                fatalError("Invalid URL: \(url)")
+                return
             }
             
             URLSession.shared.dataTask(with: parsedURL) { data, response, error in

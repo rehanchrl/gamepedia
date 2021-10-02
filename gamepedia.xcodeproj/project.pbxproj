@@ -11,12 +11,13 @@
 		1B3E8F582703A11A0068E267 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3E8F572703A11A0068E267 /* DetailView.swift */; };
 		1B4E8EA62704F7C8001CF0F1 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4E8EA52704F7C8001CF0F1 /* RatingView.swift */; };
 		1B4E8EA82704F89F001CF0F1 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4E8EA72704F89F001CF0F1 /* AboutView.swift */; };
+		1B4E8EAB2708BBDD001CF0F1 /* Favorite.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1B4E8EA92708BBDD001CF0F1 /* Favorite.xcdatamodeld */; };
+		1B4E8EAE2708BD2E001CF0F1 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4E8EAD2708BD2E001CF0F1 /* PersistenceController.swift */; };
+		1B4E8EB02708D25A001CF0F1 /* FavoriteListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4E8EAF2708D25A001CF0F1 /* FavoriteListView.swift */; };
 		1BB21CF4270352BD004004E2 /* gamepediaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB21CF3270352BD004004E2 /* gamepediaApp.swift */; };
 		1BB21CF6270352BD004004E2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB21CF5270352BD004004E2 /* ContentView.swift */; };
 		1BB21CF8270352C1004004E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BB21CF7270352C1004004E2 /* Assets.xcassets */; };
 		1BB21CFB270352C1004004E2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BB21CFA270352C1004004E2 /* Preview Assets.xcassets */; };
-		1BB21CFD270352C1004004E2 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB21CFC270352C1004004E2 /* Persistence.swift */; };
-		1BB21D00270352C1004004E2 /* gamepedia.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1BB21CFE270352C1004004E2 /* gamepedia.xcdatamodeld */; };
 		1BB21D0827035353004004E2 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB21D0727035352004004E2 /* ApiService.swift */; };
 		1BB21D0C2703552F004004E2 /* GamesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB21D0B2703552F004004E2 /* GamesList.swift */; };
 		1BB21D0E27035662004004E2 /* GameDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB21D0D27035662004004E2 /* GameDetail.swift */; };
@@ -27,13 +28,14 @@
 		1B3E8F572703A11A0068E267 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		1B4E8EA52704F7C8001CF0F1 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		1B4E8EA72704F89F001CF0F1 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		1B4E8EAA2708BBDD001CF0F1 /* Favorite.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Favorite.xcdatamodel; sourceTree = "<group>"; };
+		1B4E8EAD2708BD2E001CF0F1 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		1B4E8EAF2708D25A001CF0F1 /* FavoriteListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListView.swift; sourceTree = "<group>"; };
 		1BB21CF0270352BD004004E2 /* gamepedia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gamepedia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BB21CF3270352BD004004E2 /* gamepediaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gamepediaApp.swift; sourceTree = "<group>"; };
 		1BB21CF5270352BD004004E2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1BB21CF7270352C1004004E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1BB21CFA270352C1004004E2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		1BB21CFC270352C1004004E2 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		1BB21CFF270352C1004004E2 /* gamepedia.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = gamepedia.xcdatamodel; sourceTree = "<group>"; };
 		1BB21D01270352C1004004E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1BB21D0727035352004004E2 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		1BB21D0B2703552F004004E2 /* GamesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesList.swift; sourceTree = "<group>"; };
@@ -59,6 +61,15 @@
 			path = extension;
 			sourceTree = "<group>";
 		};
+		1B4E8EAC2708BCF9001CF0F1 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				1B4E8EA92708BBDD001CF0F1 /* Favorite.xcdatamodeld */,
+				1B4E8EAD2708BD2E001CF0F1 /* PersistenceController.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
 		1BB21CE7270352BD004004E2 = {
 			isa = PBXGroup;
 			children = (
@@ -78,18 +89,18 @@
 		1BB21CF2270352BD004004E2 /* gamepedia */ = {
 			isa = PBXGroup;
 			children = (
+				1B4E8EAC2708BCF9001CF0F1 /* Database */,
 				1B3E8F54270399B30068E267 /* extension */,
 				1BB21D0A270354F6004004E2 /* Network */,
 				1BB21D09270354EE004004E2 /* Model */,
 				1BB21CF3270352BD004004E2 /* gamepediaApp.swift */,
 				1BB21CF5270352BD004004E2 /* ContentView.swift */,
 				1B3E8F572703A11A0068E267 /* DetailView.swift */,
+				1B4E8EAF2708D25A001CF0F1 /* FavoriteListView.swift */,
 				1B4E8EA52704F7C8001CF0F1 /* RatingView.swift */,
 				1B4E8EA72704F89F001CF0F1 /* AboutView.swift */,
 				1BB21CF7270352C1004004E2 /* Assets.xcassets */,
-				1BB21CFC270352C1004004E2 /* Persistence.swift */,
 				1BB21D01270352C1004004E2 /* Info.plist */,
-				1BB21CFE270352C1004004E2 /* gamepedia.xcdatamodeld */,
 				1BB21CF9270352C1004004E2 /* Preview Content */,
 			);
 			path = gamepedia;
@@ -189,16 +200,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1BB21CFD270352C1004004E2 /* Persistence.swift in Sources */,
+				1B4E8EAB2708BBDD001CF0F1 /* Favorite.xcdatamodeld in Sources */,
 				1B3E8F582703A11A0068E267 /* DetailView.swift in Sources */,
 				1B3E8F5627039A9A0068E267 /* CustomImageView.swift in Sources */,
 				1B4E8EA62704F7C8001CF0F1 /* RatingView.swift in Sources */,
 				1BB21D0827035353004004E2 /* ApiService.swift in Sources */,
 				1B4E8EA82704F89F001CF0F1 /* AboutView.swift in Sources */,
 				1BB21CF6270352BD004004E2 /* ContentView.swift in Sources */,
+				1B4E8EAE2708BD2E001CF0F1 /* PersistenceController.swift in Sources */,
+				1B4E8EB02708D25A001CF0F1 /* FavoriteListView.swift in Sources */,
 				1BB21CF4270352BD004004E2 /* gamepediaApp.swift in Sources */,
 				1BB21D0E27035662004004E2 /* GameDetail.swift in Sources */,
-				1BB21D00270352C1004004E2 /* gamepedia.xcdatamodeld in Sources */,
 				1BB21D0C2703552F004004E2 /* GamesList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -390,13 +402,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		1BB21CFE270352C1004004E2 /* gamepedia.xcdatamodeld */ = {
+		1B4E8EA92708BBDD001CF0F1 /* Favorite.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				1BB21CFF270352C1004004E2 /* gamepedia.xcdatamodel */,
+				1B4E8EAA2708BBDD001CF0F1 /* Favorite.xcdatamodel */,
 			);
-			currentVersion = 1BB21CFF270352C1004004E2 /* gamepedia.xcdatamodel */;
-			path = gamepedia.xcdatamodeld;
+			currentVersion = 1B4E8EAA2708BBDD001CF0F1 /* Favorite.xcdatamodel */;
+			path = Favorite.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

@@ -10,16 +10,11 @@ import CoreData
 
 struct ContentView: View {
     
+    @Environment(\.managedObjectContext) var managedObjectContext
+    
+    @FetchRequest(entity: Game.entity(), sortDescriptors: []) var favorites: FetchedResults<Game>
     @State var searchText: String = ""
     @State var games:[GamesList] = []
-    
-    
-    var maxRating = 5
-    var offImage: Image?
-    var onImage = Image(systemName: "star.fill")
-    
-    var offColor = Color.gray
-    var onColor = Color.yellow
     
     var body: some View {
         NavigationView {
@@ -47,6 +42,18 @@ struct ContentView: View {
                                     .font(.callout)
                                 RatingView(rating: Int(game.rating ?? 0))
                             }
+                            Spacer()
+                            Button {
+                                if isFavorited(game) {
+                                    deleteFavorite(game)
+                                } else {
+                                    saveToFavorite(game)
+                                }
+                                
+                            } label: {
+                                Image(systemName: isFavorited(game) ? "heart.fill" : "heart" ).foregroundColor(.pink)
+                            }.buttonStyle(PlainButtonStyle())
+
                         }
                     }
                     
@@ -70,17 +77,35 @@ struct ContentView: View {
         
     }
     
-    func image(for number: Int, rating: Int) -> Image {
-        if number > rating {
-            return offImage ?? onImage
-        } else {
-            return onImage
+    func isFavorited(_ game: GamesList) -> Bool {
+        if favorites.filter({ $0.idGame == game.idGame ?? 0 }).isEmpty {
+            return false
         }
+        return true
+    }
+    
+    func saveToFavorite(_ game: GamesList) {
+        let favoriteGame = Game(context: managedObjectContext)
+        favoriteGame.idGame = Int32(game.idGame ?? 0)
+        favoriteGame.name = game.name
+        favoriteGame.backgroundImage = game.backgroundImage
+        favoriteGame.released = game.released
+        favoriteGame.rating = game.rating ?? 0
+        
+        PersistenceController.shared.save()
+    }
+    
+    func deleteFavorite(_ game: GamesList) {
+        if let favorite = favorites.filter({ $0.idGame == game.idGame ?? 0 }).first {
+            managedObjectContext.delete(favorite)
+        }
+        
+        PersistenceController.shared.save()
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        ContentView()
     }
 }

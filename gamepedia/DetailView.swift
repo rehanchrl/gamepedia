@@ -9,8 +9,12 @@ import SwiftUI
 
 struct DetailView: View {
     var game: GamesList
-    @State var gameDetail: GameDetail?
     
+    @Environment(\.managedObjectContext) var managedObjectContext
+    
+    @FetchRequest(entity: Game.entity(), sortDescriptors: []) var favorites: FetchedResults<Game>
+    
+    @State var gameDetail: GameDetail?
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
@@ -27,6 +31,17 @@ struct DetailView: View {
                             .font(.callout)
                         RatingView(rating: Int(game.rating ?? 0))
                     }
+                    Spacer()
+                    Button {
+                        if isFavorited() {
+                            deleteFavorite()
+                        } else {
+                            saveToFavorite()
+                        }
+                        
+                    } label: {
+                        Image(systemName: isFavorited() ? "heart.fill" : "heart" ).foregroundColor(.pink)
+                    }.buttonStyle(PlainButtonStyle())
                 }
                 Text("Platform :").font(.title3).bold()
                 ScrollView(.horizontal, showsIndicators: false) {
@@ -67,6 +82,32 @@ struct DetailView: View {
                 self.gameDetail = gameDetail
             }
         }
+    }
+    
+    func isFavorited() -> Bool {
+        if favorites.filter({ $0.idGame == game.idGame ?? 0 }).isEmpty {
+            return false
+        }
+        return true
+    }
+    
+    func saveToFavorite() {
+        let favoriteGame = Game(context: managedObjectContext)
+        favoriteGame.idGame = Int32(gameDetail?.idGame ?? 0)
+        favoriteGame.name = gameDetail?.name
+        favoriteGame.backgroundImage = gameDetail?.backgroundImage
+        favoriteGame.released = gameDetail?.released
+        favoriteGame.rating = gameDetail?.rating ?? 0
+        
+        PersistenceController.shared.save()
+    }
+    
+    func deleteFavorite() {
+        if let favorite = favorites.filter({ $0.idGame == game.idGame ?? 0 }).first {
+            managedObjectContext.delete(favorite)
+        }
+        
+        PersistenceController.shared.save()
     }
 }
 
