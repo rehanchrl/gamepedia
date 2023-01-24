@@ -23,6 +23,8 @@
 		1B3E8F5627039A9A0068E267 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3E8F5527039A9A0068E267 /* CustomImageView.swift */; };
 		1B4E8EA62704F7C8001CF0F1 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4E8EA52704F7C8001CF0F1 /* RatingView.swift */; };
 		1B4E8EA82704F89F001CF0F1 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4E8EA72704F89F001CF0F1 /* AboutView.swift */; };
+		1B7641F129801C31001FB4B9 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 1B7641F029801C31001FB4B9 /* Realm */; };
+		1B7641F329801C31001FB4B9 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 1B7641F229801C31001FB4B9 /* RealmSwift */; };
 		1BB21CF4270352BD004004E2 /* gamepediaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB21CF3270352BD004004E2 /* gamepediaApp.swift */; };
 		1BB21CF6270352BD004004E2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB21CF5270352BD004004E2 /* ContentView.swift */; };
 		1BB21CF8270352C1004004E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BB21CF7270352C1004004E2 /* Assets.xcassets */; };
@@ -76,6 +78,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B7641F329801C31001FB4B9 /* RealmSwift in Frameworks */,
+				1B7641F129801C31001FB4B9 /* Realm in Frameworks */,
 				990D087529214CE261AD8DA1 /* Pods_gamepedia.framework in Frameworks */,
 				1BFD84E4296EB3990087651A /* CachedAsyncImage in Frameworks */,
 			);
@@ -365,6 +369,8 @@
 			name = gamepedia;
 			packageProductDependencies = (
 				1BFD84E3296EB3990087651A /* CachedAsyncImage */,
+				1B7641F029801C31001FB4B9 /* Realm */,
+				1B7641F229801C31001FB4B9 /* RealmSwift */,
 			);
 			productName = gamepedia;
 			productReference = 1BB21CF0270352BD004004E2 /* gamepedia.app */;
@@ -395,6 +401,7 @@
 			mainGroup = 1BB21CE7270352BD004004E2;
 			packageReferences = (
 				1BFD84E2296EB3990087651A /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */,
+				1B7641EF29801C31001FB4B9 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 1BB21CF1270352BD004004E2 /* Products */;
 			projectDirPath = "";
@@ -680,6 +687,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		1B7641EF29801C31001FB4B9 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.34.0;
+			};
+		};
 		1BFD84E2296EB3990087651A /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/lorenzofiamingo/swiftui-cached-async-image";
@@ -691,6 +706,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1B7641F029801C31001FB4B9 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1B7641EF29801C31001FB4B9 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		1B7641F229801C31001FB4B9 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1B7641EF29801C31001FB4B9 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
 		1BFD84E3296EB3990087651A /* CachedAsyncImage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1BFD84E2296EB3990087651A /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */;

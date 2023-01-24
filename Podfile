@@ -6,6 +6,6 @@ target 'gamepedia' do
   use_frameworks!
 
   # Pods for gamepedia
-  pod 'RealmSwift'
+#  pod 'RealmSwift', '~>10'
 
 end
