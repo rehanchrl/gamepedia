@@ -1,5 +1,5 @@
 language: swift
-osx_image: xcode13.3 
+osx_image: xcode14
 xcode_project: gamepedia.xcodeproj 
 xcode_scheme: gamepedia
 xcode_destination: platform=iOS Simulator,OS=15.4,name=iPhone 13 mini
