@@ -7,10 +7,12 @@
 
 import SwiftUI
 import CachedAsyncImage
+import Core
+import Game
 
 struct HomeView: View {
     
-    @ObservedObject var presenter: HomePresenter
+    @ObservedObject var presenter: GetListPresenter<String, GamesListDomainModel, Interactor<String, [GamesListDomainModel], GetGamesRepository<GetGamesLocaleDataSource, GetGamesRemoteDataSource, GamesTransformer>>>
     
     @State var searchText: String = ""
     
@@ -18,14 +20,14 @@ struct HomeView: View {
         
         List {
             TextField("Search", text: $searchText, onCommit: {
-                self.presenter.getCategories(keyword: searchText)
+                self.presenter.getList(request: searchText)
             })
             .padding(7)
             .background(Color(.systemGray6))
             .cornerRadius(8)
             
-            ForEach(self.presenter.gameList, id: \.idGame) { game in
-                self.presenter.linkBuilder(for: game) {
+            ForEach(self.presenter.list, id: \.id) { game in
+                linkBuilder(for: game) {
                     HStack {
                         
                         if #available(iOS 15.0, *) {
@@ -53,8 +55,8 @@ struct HomeView: View {
         }
         .navigationTitle("Gamepedia")
         .onAppear() {
-            if self.presenter.gameList.count == 0 {
-                self.presenter.getCategories(keyword: "")
+            if self.presenter.list.count == 0 {
+                self.presenter.getList(request: "")
             }
         }
         .toolbar {
@@ -67,4 +69,12 @@ struct HomeView: View {
         }
     }
     
+    func linkBuilder<Content: View>(
+        for game: GamesListDomainModel,
+        @ViewBuilder content: () -> Content
+    ) -> some View {
+        NavigationLink(
+            destination: HomeRouter().makeDetailView(for: game)
+        ) { content() }
+    }
 }

@@ -7,9 +7,11 @@
 
 import SwiftUI
 import CoreData
+import Core
+import Game
 
 struct ContentView: View {
-    @EnvironmentObject var homePresenter: HomePresenter
+    @EnvironmentObject var homePresenter: GetListPresenter<String, GamesListDomainModel, Interactor<String, [GamesListDomainModel], GetGamesRepository<GetGamesLocaleDataSource, GetGamesRemoteDataSource, GamesTransformer>>>
     
     @State var games:[GamesList] = []
     

@@ -6,11 +6,24 @@
 //
 
 import SwiftUI
+import Core
+import Game
+
+let injection = Injection()
+
+let gameUseCase: Interactor<
+  String,
+  [GamesListDomainModel],
+  GetGamesRepository<
+    GetGamesLocaleDataSource,
+    GetGamesRemoteDataSource,
+    GamesTransformer>
+> = injection.provideHome()
 
 @main
 struct gamepediaApp: App {
     
-    let homePresenter = HomePresenter(homeUseCase: Injection.init().provideHome())
+    let homePresenter = GetListPresenter(useCase: gameUseCase)
     
     var body: some Scene {
         WindowGroup {

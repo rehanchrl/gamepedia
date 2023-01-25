@@ -6,12 +6,17 @@
 //
 
 import SwiftUI
+import Game
+import Core
 
 class HomeRouter {
     
-    func makeDetailView(for game: GamesListModel) -> some View {
-        let detailUseCase = Injection.init().provideDetail(game: game)
-        let presenter = DetailPresenter(detailUseCase: detailUseCase)
+    
+    
+    func makeDetailView(for game: GamesListDomainModel) -> some View {
+        let detailUseCase: Interactor<Any,GameDetailDomainModel,GetGameDetailRepository<GetGameDetailRemoteDataSource,GameDetailTransformer>> = Injection.init().provideDetail(game: game)
+//        let detailUseCase = Injection.init().provideDetail(game: game)
+        let presenter = Presenter(useCase: detailUseCase)
         return DetailView(presenter: presenter)
     }
     

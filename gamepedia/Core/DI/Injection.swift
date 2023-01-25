@@ -5,28 +5,45 @@
 //  Created by rehanchrl on 08/01/23.
 //
 
-import Foundation
+import UIKit
 import RealmSwift
+import Core
+import Game
+
 
 final class Injection: NSObject {
     
-    private func provideRepository() -> GameRepositoryProtocol {
-        let realm = try? Realm()
+    private let realm = try? Realm()
+    
+    func provideHome<U: UseCase>() -> U where U.Request == String, U.Response == [GamesListDomainModel] {
+            
+        let locale = GetGamesLocaleDataSource(realm: realm!)
         
-        let locale: LocaleDataSource = LocaleDataSource.sharedInstance(realm)
-        let remote: RemoteDataSource = RemoteDataSource.sharedInstance
+        let remote = GetGamesRemoteDataSource(endpoint: "https://api.rawg.io/api/games", apikey: "3bc9129cfa5446339a779e546605926a")
         
-        return GameRepository.sharedInstance(locale, remote)
+        let mapper = GamesTransformer()
+        
+        let repository = GetGamesRepository(
+            localeDataSource: locale,
+            remoteDataSource: remote,
+            mapper: mapper)
+        
+        return Interactor(repository: repository) as! U
     }
     
-    func provideHome() -> HomeUseCase {
-        let repository = provideRepository()
-        return HomeInteractor(repository: repository)
-    }
-    
-    func provideDetail(game: GamesListModel) -> DetailUseCase {
-        let repository = provideRepository()
-        return DetailInteractor(repository: repository, game: game)
+    func provideDetail<U: UseCase>(game: GamesListDomainModel) -> U where U.Request == Any, U.Response == GameDetailDomainModel {
+        
+        let remote = GetGameDetailRemoteDataSource(endpoint: "https://api.rawg.io/api/games", apikey: "3bc9129cfa5446339a779e546605926a")
+        
+        let mapper = GameDetailTransformer()
+        
+        let repository = GetGameDetailRepository(
+            game: game,
+            remoteDataSource: remote,
+            mapper: mapper
+        )
+        
+        return Interactor(repository: repository) as! U
     }
     
 }
